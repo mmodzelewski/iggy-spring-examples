@@ -1,0 +1,13 @@
+iggy:
+  host: localhost
+  port: 8090
+  username: iggy
+  password: iggy
+  streamName: dev
+  topicName: notifications
+  consumerGroup: consumer-group
+
+logging:
+  level:
+    org.apache.iggy: DEBUG
+

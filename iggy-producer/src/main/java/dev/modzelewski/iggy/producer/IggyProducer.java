@@ -20,7 +20,7 @@ import java.util.UUID;
 public class IggyProducer {
 
   private static final Logger log = LoggerFactory.getLogger(IggyProducer.class);
-  private static final UUID clientId = UUID.randomUUID();
+  static final UUID clientId = UUID.randomUUID();
 
   private final IggyTcpClient iggyClient;
   private final StreamId streamId;
@@ -46,15 +46,16 @@ public class IggyProducer {
               iggyClient.streams().createStream(streamId.getName());
               iggyClient
                   .topics()
-                  .createTopic(streamId, 1L, CompressionAlgorithm.None, BigInteger.ZERO, BigInteger.ZERO, Optional.empty(), heartbeatsTopicId.getName());
+                  .createTopic(streamId, 5L, CompressionAlgorithm.None, BigInteger.ZERO, BigInteger.ZERO, Optional.empty(), heartbeatsTopicId.getName());
               iggyClient
                   .topics()
-                  .createTopic(streamId, 1L, CompressionAlgorithm.None, BigInteger.ZERO, BigInteger.ZERO, Optional.empty(), messagesTopicId.getName());
+                  .createTopic(streamId, 5L, CompressionAlgorithm.None, BigInteger.ZERO, BigInteger.ZERO, Optional.empty(), messagesTopicId.getName());
             }
         );
   }
 
   public void sendMessage(String message) {
+    log.info("Sending message: {}", message);
     iggyClient
         .messages()
         .sendMessages(streamId, messagesTopicId, Partitioning.balanced(), List.of(Message.of(message)));
