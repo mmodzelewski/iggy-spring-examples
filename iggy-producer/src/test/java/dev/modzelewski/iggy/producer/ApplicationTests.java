@@ -1,4 +1,4 @@
-package dev.modzelewski.iggy_producer;
+package dev.modzelewski.iggy.producer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
